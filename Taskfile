@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Inspired on https://github.com/adriancooney/Taskfile
+#
+# Install an alias, to be able to simply execute `run`
+# echo 'alias run=./run' >> ~/.aliases
+#
+# alias run=./Taskfile
+# alias help=./Taskfile help
+
+function help {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+
+function default {
+    help
+}
+
+function setupAuth {
+  docker pull alpine
+}
+
+function auth {
+  docker run --rm --entrypoint htpasswd httpd:2 -Bbn $1 $2 > traefik.auth
+}
+
+
+TIMEFORMAT="Task completed in %3lR"
+time "${@:-default}"
