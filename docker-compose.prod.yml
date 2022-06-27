@@ -48,4 +48,4 @@ services:
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
 
       ## AUTH
-      - traefik.http.middlewares.test-auth.basicauth.usersfile=/auth/traefik.auth
+      - traefik.http.middlewares.auth.basicauth.usersfile=/auth/traefik.auth
