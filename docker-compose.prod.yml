@@ -33,7 +33,7 @@ services:
       ## TRAEFIK ROUTER & DASHBOARD
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=https
-      - traefik.http.routers.traefik.rule=Host(`${TRAEFIK_HOST}`)
+      - traefik.http.routers.traefik.rule=Host(`${TRAEFIK_DASHBOARD_HOST}`)
       - traefik.http.routers.traefik.service=api@internal
       - traefik.http.routers.traefik.middlewares=auth
       - traefik.http.routers.traefik.tls.certresolver=leresolver
