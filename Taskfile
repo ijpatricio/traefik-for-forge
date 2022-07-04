@@ -18,10 +18,20 @@ function default {
     help
 }
 
+function copyEnv {
+  cp .env.example .env
+}
+
 function auth {
   docker run --rm --entrypoint htpasswd httpd:2 -Bbn $1 $2 > traefik.auth
 }
 
+function baseDeployScript {
+  cd /home/forge/traefik
+  git pull origin $FORGE_SITE_BRANCH
+
+  docker-compose up -d --remove-orphans
+}
 
 TIMEFORMAT="Task completed in %3lR"
 time "${@:-default}"
