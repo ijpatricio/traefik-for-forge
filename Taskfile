@@ -18,10 +18,6 @@ function default {
     help
 }
 
-function setupAuth {
-  docker pull alpine
-}
-
 function auth {
   docker run --rm --entrypoint htpasswd httpd:2 -Bbn $1 $2 > traefik.auth
 }
