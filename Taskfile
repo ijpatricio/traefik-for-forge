@@ -22,6 +22,10 @@ function copyCompose {
   cp docker-compose.prod.yml docker-compose.yml
 }
 
+function prepareNetwork {
+  docker network ls | grep web || docker network create web
+}
+
 function copyEnv {
   cp .env.example .env
 }
@@ -32,7 +36,10 @@ function auth {
 
 function baseDeployScript {
   cd /home/forge/traefik
+
   git pull origin $FORGE_SITE_BRANCH
+
+  ./Taskfile copyCompose
 
   docker-compose up -d --remove-orphans
 }
