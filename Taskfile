@@ -18,6 +18,10 @@ function default {
     help
 }
 
+function copyCompose {
+  cp docker-compose.prod.yml docker-compose.yml
+}
+
 function copyEnv {
   cp .env.example .env
 }
