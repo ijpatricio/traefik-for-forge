@@ -22,11 +22,8 @@ function copyCompose {
   cp docker-compose.prod.yml docker-compose.yml
 }
 
-function prepareNetwork {
+function afterFreshInstall {
   docker network ls | grep web || docker network create web
-}
-
-function copyEnv {
   cp .env.example .env
 }
 
